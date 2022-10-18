@@ -65,14 +65,7 @@ export const FilterForEpisodeOrLocation = ({
     setResults(filter);
   };
 
-  // const btns = document.getElementsByTagName("button");
-  // // console.log(btns);
-
-  // for (let index = 0; index < btns.length; index++) {
-  //   btns[index].classList.add("actives");
-
-  //   // console.log("AAAAAAAAAA", btns[index]);
-  // }
+ 
 
   return (
     <>
