@@ -3,11 +3,13 @@ import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import styles from "../search/Search.module.scss";
 
-export const Search = ({ setSearch, updatePageNumber }) => {
+export const Search = ({ setSearch, search,updatePageNumber }) => {
   return (
     <InputGroup className="mb-3">
       {/* <InputGroup.Text id="inputGroup-sizing-default" className={styles.text}>Buscar</InputGroup.Text> */}
       <Form.Control
+        autoFocus
+        id="searchId"
         className={`${styles.input}`}
         type="search"
         aria-label="Default"

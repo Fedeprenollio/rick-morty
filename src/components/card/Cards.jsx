@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "../card/Card.module.scss";
 import Card from "react-bootstrap/Card";
 import { Link, useNavigate } from "react-router-dom";
@@ -6,33 +6,49 @@ import Swal from "sweetalert2";
 
 import "sweetalert2/src/sweetalert2.scss";
 
-export const Cards = ({ page, results,setSearch, fetchedData,updateStatus,updateGender,updateSpecies }) => {
+export const Cards =  ({
+  page,
+  results,
+  setSearch,
+  search,
+  fetchedData,
+  updateStatus,
+  updateGender,
+  updateSpecies,
+}) => {
+  let display
 
+useEffect(() => {
+  if (fetchedData.error === "There is nothing here" && search.length > 0) {
+    const length = search.length;
+    const input = document.getElementById("searchId");
+    input.setAttribute("maxlength", length);
 
-  // let navigate = useNavigate();
-  let display;
-
-useEffect(() => {  
-  if (fetchedData?.error) {
-   
-    updateStatus("")
-    updateGender("")
-    updateSpecies("")
-    setSearch("")
-
-   const btn = document.getElementsByClassName("form-check-input x")
-  for (let i = 0; i < btn.length; i++) {
-    btn[i].checked = false
-    
+    // document.getElementById("searchId").value = search.slice(0, -1);
+  } else {
+    const input = document.getElementById("searchId");
+    input?.removeAttribute("maxlength");
   }
- 
+}, [fetchedData.error,search.length, search])
 
-
-  }
 
   
-}, [fetchedData])
 
+;
+
+  useEffect(() => {
+    if (fetchedData.error) {
+      updateStatus("");
+      updateGender("");
+      updateSpecies("");
+      // setSearch("");
+
+      const btn = document.getElementsByClassName("form-check-input x");
+      for (let i = 0; i < btn.length; i++) {
+        btn[i].checked = false;
+      }
+    }
+  }, [fetchedData]);
 
   if (results) {
     display = results.map((res, index) => {
@@ -87,20 +103,23 @@ useEffect(() => {
       );
     });
   } else {
-    if (fetchedData?.error) {
-      Swal.fire({
-        title: "Error!",
-        text: "No hay personajes con esos criterios de filtrado",
-        icon: "error",
-        confirmButtonText: "Ok",
-      });
+    if (fetchedData.error === "There is nothing here") {
+      //   const length = search.length;
+      //   const input = document.getElementById("searchId");
+      //   input.setAttribute("maxlength", length);
+      //   setError(false)
+      //   console.log(input)
+      //   console.log("add",fetchedData.error);
+      // }else  {
+      //   console.log("remove",fetchedData.error);
+      //   const input = document.getElementById("searchId");
+      //   input?.removeAttribute("maxlength");
+      // }
     }
-
     display = "Sin personajes que mostrar...";
     return (
       // navigate("/characters")
       <h1>{display}</h1>
-      
     );
   }
 

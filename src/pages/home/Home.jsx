@@ -17,17 +17,30 @@ export default function Home() {
   let [species, updateSpecies] = useState("");
   //-------
   let api = `https://rickandmortyapi.com/api/character/?page=${pageNumber}&name=${search}&status=${status}&gender=${gender}&species=${species}`;
-console.log(search)
+
   useEffect(() => {
-    fetch(api).then((resp) => {
-      resp.json().then((resp) => updateFetchedData(resp));
-    });
+    fetch(api)
+      .then((resp) => {
+        resp.json().then((resp) => {
+          updateFetchedData(resp);
+        });
+      })
+      .catch((err) => console.log("ERROR", err));
+
+    // if(fetchedData.error){
+    //  const input = document.getElementById("searchId")
+    //  console.log(input)
+    // }
   }, [api]);
 
   return (
     <div className="App">
       <h1 className="text-center mb-3">Personajes</h1>
-      <Search setSearch={setSearch} updatePageNumber={updatePageNumber} />
+      <Search
+        setSearch={setSearch}
+        updatePageNumber={updatePageNumber}
+        search={search}
+      />
       <div className="container">
         <div className="row">
           <Filter
@@ -48,6 +61,7 @@ console.log(search)
                 updateGender={updateGender}
                 updateSpecies={updateSpecies}
                 setSearch={setSearch}
+                search={search}
               />
             </div>
           </div>
