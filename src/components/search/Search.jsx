@@ -17,6 +17,7 @@ export const Search = ({ setSearch, updatePageNumber }) => {
           updatePageNumber(1);
         }}
         placeholder="Busca tu personaje"
+        size="sm"
       />
     </InputGroup>
   );

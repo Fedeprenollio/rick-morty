@@ -6,7 +6,7 @@ import Swal from "sweetalert2";
 
 import "sweetalert2/src/sweetalert2.scss";
 
-export const Cards = ({ page, results, fetchedData,updateStatus,updateGender,updateSpecies }) => {
+export const Cards = ({ page, results,setSearch, fetchedData,updateStatus,updateGender,updateSpecies }) => {
 
 
   // let navigate = useNavigate();
@@ -18,6 +18,8 @@ useEffect(() => {
     updateStatus("")
     updateGender("")
     updateSpecies("")
+    setSearch("")
+
    const btn = document.getElementsByClassName("form-check-input x")
   for (let i = 0; i < btn.length; i++) {
     btn[i].checked = false

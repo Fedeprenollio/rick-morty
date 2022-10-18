@@ -47,6 +47,7 @@ console.log(search)
                 updateStatus={updateStatus}
                 updateGender={updateGender}
                 updateSpecies={updateSpecies}
+                setSearch={setSearch}
               />
             </div>
           </div>
