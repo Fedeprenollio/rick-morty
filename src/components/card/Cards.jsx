@@ -19,7 +19,7 @@ export const Cards =  ({
   let display
 
 useEffect(() => {
-  if (fetchedData.error === "There is nothing here" && search.length > 0) {
+  if (fetchedData?.error === "There is nothing here" && search?.length > 0) {
     const length = search.length;
     const input = document.getElementById("searchId");
     input.setAttribute("maxlength", length);
@@ -29,7 +29,7 @@ useEffect(() => {
     const input = document.getElementById("searchId");
     input?.removeAttribute("maxlength");
   }
-}, [fetchedData.error,search.length, search])
+}, [fetchedData?.error,search?.length, search])
 
 
   
@@ -37,7 +37,7 @@ useEffect(() => {
 ;
 
   useEffect(() => {
-    if (fetchedData.error) {
+    if (fetchedData?.error) {
       updateStatus("");
       updateGender("");
       updateSpecies("");
